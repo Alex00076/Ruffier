@@ -30,10 +30,10 @@ class Runner(BoxLayout):
 
 
     def next(self, widget, step):
-        sound = SoundLoader.load('sampleaudio.wav')
+        sound = SoundLoader.load('Sound_19349.mp3')
         if step == 1.0:
             self.value += 1
-            MenuPage.sound.play()
+            sound.play()
             if self.value >= self.total:
                 self.animation.repeat = False
                 self.finished = True
