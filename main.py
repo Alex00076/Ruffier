@@ -2,7 +2,7 @@
 
 # Здесь должен быть твой код
 # готовый ThirsScr
-#####
+
 from kivy.app import App
 from kivy.uix.button import Button
 from kivy.uix.label import Label
@@ -10,7 +10,7 @@ from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.textinput import TextInput
 from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.uix.scrollview import ScrollView
-
+from kivy.uix.image import Image
 from scrollLabel import *
 from instructions import *
 from seconds import *
@@ -35,6 +35,10 @@ class MainScr(Screen):
 
         scroll_text = ScrollLabel(txt_instruction)
 
+        img = Image(source='cwrdce.png',
+                    size_hint=(1, .5),
+                    pos_hint={'center_x':.5, 'center_y':.5})
+
         name_lab = Label(text='Ваша имя: ')
         self.name_value = TextInput(text='', multiline = False)
 
@@ -53,6 +57,7 @@ class MainScr(Screen):
         hor_layout2.add_widget(self.age_value)
 
         ver_layout = BoxLayout(orientation='vertical')
+        ver_layout.add_widget(img)
         ver_layout.add_widget(scroll_text)
         ver_layout.add_widget(hor_layout1)
         ver_layout.add_widget(hor_layout2)
@@ -124,6 +129,8 @@ class SecondScr(Screen):
         self.next_screen = False
 
         instr = ScrollLabel(txt_sits,size_hint=(1,0.1))
+
+
 
         self.sits_value = Sits(30,size_hint=(1,0.1))
         self.run = Runner(total=30, steptime=1.5)
