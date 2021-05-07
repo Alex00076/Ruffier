@@ -82,7 +82,7 @@ class FirstScr(Screen):
         instr1 = ScrollLabel(txt_test1)
         instr2 = ScrollLabel('Считайте пульт')
 
-        self.sec = Seconds(1)
+        self.sec = Seconds(15)
         self.sec.bind(done = self.sec_finished)
 
         res_label = Label(text='Введите результат: ')
