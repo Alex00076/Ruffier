@@ -17,6 +17,7 @@ from seconds import *
 from sits import *
 from runner import *
 from ruffier import *
+from kivy.core.audio import SoundLoader,Sound
 
 age = 20
 name = ''
@@ -35,7 +36,7 @@ class MainScr(Screen):
 
         scroll_text = ScrollLabel(txt_instruction)
 
-        img = Image(source='cwrdce.png',
+        img = Image(source='swrdce.png',
                     size_hint=(1, .5),
                     pos_hint={'center_x':.5, 'center_y':.5})
 
@@ -81,7 +82,7 @@ class FirstScr(Screen):
         instr1 = ScrollLabel(txt_test1)
         instr2 = ScrollLabel('Считайте пульт')
 
-        self.sec = Seconds(15)
+        self.sec = Seconds(1)
         self.sec.bind(done = self.sec_finished)
 
         res_label = Label(text='Введите результат: ')
@@ -130,7 +131,11 @@ class SecondScr(Screen):
 
         instr = ScrollLabel(txt_sits,size_hint=(1,0.1))
 
+        img = Image(source='pricedania.png',
+                    size_hint=(1, .5),
+                    pos_hint={'center_x':.5, 'center_y':.5})
 
+        M = SoundLoader.load('Sound_19349.mp3')
 
         self.sits_value = Sits(30,size_hint=(1,0.1))
         self.run = Runner(total=30, steptime=1.5)
@@ -141,6 +146,7 @@ class SecondScr(Screen):
 
         ver = BoxLayout(orientation = 'vertical')
         ver.add_widget(instr)
+        ver.add_widget(img)
         ver.add_widget(self.sits_value)
         ver.add_widget(self.run)
         ver.add_widget(self.but)
