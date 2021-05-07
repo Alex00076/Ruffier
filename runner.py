@@ -3,7 +3,7 @@ from kivy.properties import NumericProperty, BooleanProperty
 from kivy.uix.button import Button
 from kivy.animation import Animation 
 from kivy.uix.boxlayout import BoxLayout
-from kivy.core.audio import SoundLoader,Sound
+from kivy.core.audio import SoundLoader
 
 class Runner(BoxLayout):
     value = NumericProperty(0)
@@ -30,10 +30,11 @@ class Runner(BoxLayout):
 
 
     def next(self, widget, step):
-        sound = SoundLoader.load('Sound_19349.mp3')
         if step == 1.0:
+            sound = SoundLoader.load('Sound_19349.mp3')
             self.value += 1
-            sound.play()
+            if sound:
+                sound.play()
             if self.value >= self.total:
                 self.animation.repeat = False
                 self.finished = True

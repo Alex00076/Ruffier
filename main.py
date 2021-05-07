@@ -17,7 +17,7 @@ from seconds import *
 from sits import *
 from runner import *
 from ruffier import *
-from kivy.core.audio import SoundLoader,Sound
+from kivy.core.audio import SoundLoader
 
 age = 20
 name = ''
@@ -134,8 +134,6 @@ class SecondScr(Screen):
         img = Image(source='pricedania.png',
                     size_hint=(1, .5),
                     pos_hint={'center_x':.5, 'center_y':.5})
-
-        M = SoundLoader.load('Sound_19349.mp3')
 
         self.sits_value = Sits(30,size_hint=(1,0.1))
         self.run = Runner(total=30, steptime=1.5)
