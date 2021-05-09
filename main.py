@@ -18,12 +18,23 @@ from sits import *
 from runner import *
 from ruffier import *
 from kivy.core.audio import SoundLoader
+from kivy.uix.popup import Popup
 
 age = 20
 name = ''
 pulse1 = 0
 pulse2 = 0
 pulse3 = 0
+
+
+def check_int(number):
+    try:
+        return int(number)
+    except:
+        return False
+
+
+
 
 
 def get_result():
@@ -69,9 +80,14 @@ class MainScr(Screen):
     def next(self):
         global name, age
         name = self.name_value.text
-        age = int(self.age_value.text)
-        print(age)
-        self.manager.current = 'first'
+        age = check_int(self.age_value.text)
+        if age == False:
+            popup = Popup(title='Ошибка', content=Label(text='Возраст должен быть от 7 лет'), size_hint=(None, None), size=(600, 600), pos_hint={'center_x': 0.5, 'center_y': 0.5})
+            popup.open()
+        else:
+            self.manager.current = 'first'
+        
+
 
 
 class FirstScr(Screen):
@@ -119,8 +135,12 @@ class FirstScr(Screen):
             self.sec.start()
         else:
             global pulse1
-            pulse1 = int(self.res_value.text)
-            self.manager.current = 'second'
+            pulse1 = check_int(self.res_value.text)
+            if pulse1 == False:
+                popup = Popup(title='Ошибка', content=Label(text='Пульс должен быть целым числом'), size_hint=(None, None), size=(600, 600), pos_hint={'center_x': 0.5, 'center_y': 0.5})
+                popup.open()
+            else:
+                self.manager.current = 'second'
 
 
 class SecondScr(Screen):
@@ -227,9 +247,17 @@ class ThirdScr(Screen):
             self.sec.start()
         else:
             global pulse2, pulse3
-            pulse2 = int(self.res1_value.text)
-            pulse3 = int(self.res2_value.text)
-            self.manager.current = 'fourth'
+            pulse2 = check_int(self.res1_value.text)
+            if pulse2 == False:
+                popup = Popup(title='Ошибка', content=Label(text='пульс должен быть целым числом'), size_hint=(None, None), size=(600, 600), pos_hint={'center_x': 0.5, 'center_y': 0.5})
+                popup.open()
+            else:
+                pulse3 = check_int(self.res2_value.text)
+                if pulse3 == False:
+                    popup = Popup(title='Ошибка', content=Label(text='пульс должен быть целым числом'), size_hint=(None, None), size=(600, 600), pos_hint={'center_x': 0.5, 'center_y': 0.5})
+                    popup.open()
+                else:
+                    self.manager.current = 'fourth'
 
 class FourthScr(Screen):
     def __init__(self, name='fourth'):
